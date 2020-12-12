@@ -1,22 +1,13 @@
-const GulpClient = require("gulp")
-var anything = require("gulp"),
+var gulp = require('gulp'),
 watch = require('gulp-watch');
 
-anything.task('default', function(){
-    console.log('we create a gulp file');
+gulp.task('styles',function(){
+    return gulp.src('./app/assets/style/style.css')
+    .pipe()
+    .pipe(gulp.dest('./app/temp/styles'));
 });
-
-GulpClient.task('html',function(){
-    console.log('this is another gulp ttask we defined to run or execute with gulpl cmd');
-});
-GulpClient.task('styles', function(){
-    console.log('imagein thisn is the other file of css');
-})
-GulpClient.task('watch' , function(){
-    watch('./app/index.html' , function(){
-        gulp.start('html');
+gulp.task('watch',function(){
+    watch('./app/assets/style/style.css',function(){
+        gulp.start('styles')
     });
-    watch('./app/assets/style/**/*.css',function(){
-        gulp.start('style')
-    })
-});
+}); 
